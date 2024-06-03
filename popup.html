@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yapping</title>
+    <script src = "popup.js"></script>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h2 {
+            font-size: 18px;
+            color: gray;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Yapper</h1>
+    <h2>For those who can't shut up</h2>
+    <div id="formContainer">
+        <input type="text" id="api" placeholder="Enter your OPENAI_API_KEY">
+        <button id="saveBtn">Save</button>
+    </div>
+    <button id="changeBtn" class="hidden">Change API key</button>
+    <div id="message" class="message hidden">Your API key is saved</div>
+ 
+</body>
+</html>
