@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   chrome.storage.sync.get("OPENAI_API_KEY", function (result) {
     if (result.OPENAI_API_KEY) {
-      formContainer.classList.add("hidden");
+      apiKeyInput.classList.add("hidden");
+      apiMessage.classList.remove("hidden");
       changeBtn.classList.remove("hidden");
+      saveBtn.classList.add("hidden");
     }
   });
 
