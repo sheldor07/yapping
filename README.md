@@ -1,5 +1,3 @@
-# yapping
-
 # Yapping
 
 Yapping is a Chrome extension that allows voice input on ChatGPT, making your interactions more seamless and efficient.
