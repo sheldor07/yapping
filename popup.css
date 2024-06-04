@@ -1,0 +1,81 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+@font-face {
+  font-family: "Coolvetica";
+  src: url("coolvetica rg.otf") format("truetype");
+}
+body {
+  font-family: "Coolvetica", sans-serif;
+  padding: 20px;
+  background-color: #000; /* Dark background */
+  color: #fff; /* White text */
+  text-align: center; /* Centered text */
+  width: 300px;
+}
+h1 {
+  font-size: 52px;
+  padding: 0;
+  margin: 0;
+}
+h2 {
+  font-size: 24px;
+  color: #999; /* Light gray color for subtitle */
+  margin-bottom: 30px;
+}
+#formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#api {
+  padding: 10px;
+  font-size: 12px;
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  margin-right: -1px; /* Overlap border with button */
+}
+#saveBtn {
+  padding: 4.2px;
+  font-size: 12px;
+  border: none;
+  background-color: #0aff05; /* Blue background */
+  color: black;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+#saveBtn:hover {
+  background-color: #0bc908; /* Darker blue on hover */
+}
+#changeBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 12px;
+  width: 100%;
+  border: none;
+  background-color: #005f6b; /* Red background */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+#message {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4caf50; /* Green color for message */
+}
+#message.hidden {
+  display: none;
+}
+
+button i {
+  font-size: 16px;
+  color: white;
+}
+
+button .fa-spinner {
+  font-size: 16px;
+  color: white;
+}

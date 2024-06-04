@@ -1,30 +1,39 @@
+let mic = chrome.runtime.getURL("assets/mic.svg");
+let stop = chrome.runtime.getURL("assets/stop.svg");
+let loading = chrome.runtime.getURL("assets/loading.svg");
+console.log(mic, stop, loading);
 let isRecording = false;
 let mediaRecorder;
 let recordedChunks = [];
 
 const button = document.createElement("button");
-button.innerText = "Start Recording";
-button.style.position = "fixed";
-button.style.top = "10px";
-button.style.right = "10px";
+const sendBtn = document.querySelector(
+  '[data-testid="fruitjuice-send-button"]'
+);
+
+button.innerHTML = `<img src="${mic}" width="32" height="32"/>`;
+button.style.marginBottom = "5px";
+button.style.marginRight = "5px";
 button.style.zIndex = 1000;
 const parentElement = document.getElementsByClassName(
   "flex items-end gap-1.5 md:gap-3.5"
 )[0];
-console.log(parentElement);
+
 if (parentElement) {
+  console.log("parentElement");
   parentElement.appendChild(button);
 } else {
+  console.log("body");
   document.body.appendChild(button);
 }
 
 button.addEventListener("click", () => {
   if (isRecording) {
     mediaRecorder.stop();
-    button.innerText = "Start Recording";
+    button.innerHTML = `<img src="${mic}" width="32" height="32"/>`; // Microphone icon
   } else {
     startRecording();
-    button.innerText = "Stop Recording";
+    button.innerHTML = `<img src="${stop}" width="32" height="32"/>`; // Stop icon
   }
   isRecording = !isRecording;
 });
@@ -40,6 +49,7 @@ function startRecording() {
     mediaRecorder.onstop = () => {
       const blob = new Blob(recordedChunks, { type: "audio/webm" });
       recordedChunks = [];
+      button.innerHTML = `<img src="${loading}" width="32" height="32"/>`; // Loading spinner
       sendToWhisper(blob);
     };
     mediaRecorder.start();
@@ -52,6 +62,7 @@ function sendToWhisper(blob) {
     const apiKey = data.OPENAI_API_KEY;
     if (!apiKey) {
       alert("API Key not found. Please set it in the popup.");
+      button.innerHTML = `<img src="${mic}" width="32" height="32"/>`; // Reset to microphone icon
       return;
     }
 
@@ -72,11 +83,16 @@ function sendToWhisper(blob) {
         const textBox = document.querySelector("textarea"); // Adjust selector as needed
         if (textBox) {
           textBox.value = data.text;
+          const event = new Event("input", { bubbles: true });
+          textBox.dispatchEvent(event);
         }
         console.log(data.text);
+
+        button.innerHTML = `<img src="${mic}" width="32" height="32"/>`; // Reset to microphone icon
       })
       .catch((error) => {
         console.error("Error:", error);
+        button.innerHTML = `<img src="${mic}" width="32" height="32"/>`; // Reset to microphone icon
       });
   });
 }

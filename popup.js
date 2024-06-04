@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const apiKeyInput = document.getElementById("api");
   const saveBtn = document.getElementById("saveBtn");
+  const apiMessage = document.getElementById("apiMessage");
   const changeBtn = document.getElementById("changeBtn");
   const formContainer = document.getElementById("formContainer");
   const message = document.getElementById("message");
@@ -17,16 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const apiKey = apiKeyInput.value.trim();
     if (apiKey) {
       chrome.storage.sync.set({ OPENAI_API_KEY: apiKey });
-      formContainer.classList.add("hidden");
+      apiMessage.classList.remove("hidden");
       changeBtn.classList.remove("hidden");
-      message.classList.remove("hidden");
+      saveBtn.classList.add("hidden");
     }
   });
 
   // Change button click event
   changeBtn.addEventListener("click", function () {
-    formContainer.classList.remove("hidden");
+    apiMessage.classList.add("hidden");
     changeBtn.classList.add("hidden");
-    message.classList.add("hidden");
+    saveBtn.classList.remove("hidden");
   });
 });
